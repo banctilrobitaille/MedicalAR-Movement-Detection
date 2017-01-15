@@ -41,8 +41,11 @@ class ImageHelper(object):
         bgr_movement_image = cv2.cvtColor(hsv_previous_position, cv2.COLOR_HSV2BGR)
 
         skin_mask = ImageHelper.__extract_skin_mask_from(current_position.raw_data)
+        previous_mask = ImageHelper.__extract_skin_mask_from(previous_position.raw_data)
         overlayed_image = np.zeros((skin_mask.shape[0], skin_mask.shape[1], 3), dtype=np.uint8)
         current_position_data = current_position.raw_data
+
+        moved = not(np.array(skin_mask) == np.array(previous_mask)).all()
 
         for i in range(0, bgr_movement_image.shape[0]):
             for j in range(0, bgr_movement_image.shape[1]):
@@ -60,4 +63,4 @@ class ImageHelper(object):
                     overlayed_image[i][j][1] = current_position_data[i][j][1]
                     overlayed_image[i][j][2] = current_position_data[i][j][2]
 
-        return ImageFactory.create_from_rgb_image(cv2.cvtColor(overlayed_image, cv2.COLOR_BGR2RGB))
+        return [ImageFactory.create_from_rgb_image(cv2.cvtColor(overlayed_image, cv2.COLOR_BGR2RGB)), moved]

@@ -22,7 +22,7 @@ class MainWindow(QWidget):
         self.setWindowTitle(title)
         self.resize(640, 400)
         self.__center()
-        self.setStyleSheet("background-color: #CCCCCC;")
+        self.setStyleSheet("background-color: dark-gray;")
 
     def __center(self):
         window_geometry = self.geometry()

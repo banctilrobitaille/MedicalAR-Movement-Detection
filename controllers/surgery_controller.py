@@ -6,7 +6,7 @@ from helpers.image_helper import ImageHelper
 
 
 class SurgeryController(QObject):
-    patient_position_update = pyqtSignal(object)
+    patient_position_update = pyqtSignal(object, bool)
 
     __surgery = None
     __surgery_worker = None
@@ -32,8 +32,8 @@ class SurgeryController(QObject):
         if previous_position is None:
             return current_position.rgb_image
         else:
-            self.patient_position_update.emit(
-                    ImageHelper.compute_patient_movement(current_position, previous_position).rgb_image)
+            result = ImageHelper.compute_patient_movement(current_position, previous_position)
+            self.patient_position_update.emit(result[0].rgb_image, result[1])
 
 
 class SurgeryWorker(QThread):

@@ -10,8 +10,10 @@ class ImageFrame(QFrame):
 
     def __init__(self, surgery_controller, parent=None, *args, **kwargs):
         QFrame.__init__(self, parent=parent, *args, **kwargs)
-        # surgery_controller.surgery.surgery_progress.connect(self.__update_layout_content_with)
         surgery_controller.patient_position_update.connect(self.__update_layout_content_with)
+        self.setLineWidth(2)
+        self.setFrameStyle(QFrame.Box | QFrame.Plain)
+        self.setStyleSheet("color:green")
         self.__label = QLabel(self)
         self.__layout = QHBoxLayout()
         self.__layout.addWidget(self.__label)
@@ -26,7 +28,12 @@ class ImageFrame(QFrame):
         self.__image = image
         self.__update_layout_content_with(image)
 
-    @pyqtSlot(object)
-    def __update_layout_content_with(self, image):
+    @pyqtSlot(object, bool)
+    def __update_layout_content_with(self, image, moved):
         self.__label.setPixmap(QPixmap(image))
         self.__label.adjustSize()
+        print(moved)
+        if moved:
+            self.setStyleSheet("color:yellow")
+        else:
+            self.setStyleSheet("color:green")
