@@ -1,5 +1,5 @@
-#Medical Augmented Reality <img src="/augmented-reality.png" width="60" vertical-align="bottom">
-## Patient Moving Detection Prototype
+# Patient Movement Detector Prototype <img src="/augmented-reality.png" width="60" vertical-align="bottom">
+> This project has been developped as part of the Medical augmented reality (IN2293) class at TUM (Technische Universität München). The project consists of a patient movement detector prototype. Given a set of images, the goal was to detect any movement of the object of interest, in that case the patient's arm. The UI had to inform the surgeon that the patient's arm had moved and the degree and localisation of that said movement. To do that, a segmentation using HSV skin's color range had been done, following by some morphological operations. The resulting mask was used as input for the optical flow algorithm. That algorithm gives the movement vectors and magnitudes that were colored and added to the original images.
 
 #### How to contribute ?
 - [X] Create a branch by feature and/or bug fix
@@ -12,18 +12,18 @@
 ##### Feature branch
 > feature/ [Short feature description] [Issue number]
 
-#####Bug branch
+##### Bug branch
 > fix/ [Short fix description] [Issue number]
 
 #### Commits syntax:
 
-#####Adding code:
+##### Adding code:
 > \+ Added [Short Description] [Issue Number]
 
-#####Deleting code:
+##### Deleting code:
 > \- Deleted [Short Description] [Issue Number]
 
-#####Modifying code:
+##### Modifying code:
 > \* Changed [Short Description] [Issue Number]
 
 
