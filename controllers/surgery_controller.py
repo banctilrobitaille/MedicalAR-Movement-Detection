@@ -48,4 +48,4 @@ class SurgeryWorker(QThread):
         self.__running = True
         while self.__running:
             self.__surgery.next_step()
-            time.sleep(5)
+            time.sleep(0.3)

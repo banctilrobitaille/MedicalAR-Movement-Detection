@@ -32,7 +32,6 @@ class ImageFrame(QFrame):
     def __update_layout_content_with(self, image, moved):
         self.__label.setPixmap(QPixmap(image))
         self.__label.adjustSize()
-        print(moved)
         if moved:
             self.setStyleSheet("color:yellow")
         else:
